@@ -3,7 +3,7 @@ pipeline{
   stages{
     stage("Git Checkout"){
       steps{
-            git url: 'https://github.com/aditya-malviya/myweb.git'
+            git url: 'https://github.com/Devopsveeru/tata.git'
            }
           }
     stage("Maven Build"){
@@ -14,12 +14,12 @@ pipeline{
             }
         stage("deploy-Apache"){
        steps{
-          sshagent(['18.205.115.52']) {
+          sshagent(['54.167.135.17']) {
           sh """
           scp -o StrictHostKeyChecking=no target/mcs.war  
-          admin@18.205.115.52:/opt/tomcat/webapps/
-          ssh admin@18.205.115.52 /opt/tomcat/bin/shutdown.sh
-          ssh admin@18.205.115.52 /opt/tomcat/bin/startup.sh
+          admin@54.167.135.17:/opt/tomcat/webapps/
+          ssh admin@54.167.135.17 /opt/tomcat/bin/shutdown.sh
+          ssh admin@54.167.135.17 /opt/tomcat/bin/startup.sh
            """
             }
           }

@@ -8,7 +8,7 @@ pipeline{
           }
     stage("Maven Build"){
        steps{
-            sh "mvn clean install"
+            sh "mvn clean package"
             sh "mv target/*.war target/mcs.war"
              }
             }
@@ -17,9 +17,9 @@ pipeline{
           sshagent(['54.167.135.17']) {
           sh """
           scp -o StrictHostKeyChecking=no target/mcs.war  
-          admin@54.167.135.17:/opt/tomcat/webapps/
-          ssh admin@54.167.135.17 /opt/tomcat/bin/shutdown.sh
-          ssh admin@54.167.135.17 /opt/tomcat/bin/startup.sh
+          veera@54.167.135.17:/opt/tomcat/webapps/
+          ssh veera@54.167.135.17 /opt/tomcat/bin/shutdown.sh
+          ssh veera@54.167.135.17 /opt/tomcat/bin/startup.sh
            """
             }
           }
